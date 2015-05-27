@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<path>ah1s_model.ac</path>
+<offsets>
+  <x-m>0</x-m>
+  <z-m>0</z-m>
+</offsets>
+
+
+<!-- ******************** instruments ***********************-->
+
+ <model>
+  <path>Aircraft/DavePack/Instruments/AI/AI.xml</path>
+  <offsets>
+   <x-m>-2.42</x-m>
+   <y-m> 0   </y-m>
+   <z-m> 0.47</z-m>
+   <pitch-deg>-14</pitch-deg>
+  </offsets>
+ </model>
+
+ <model>
+  <path>Aircraft/DavePack/Instruments/RDMI/RDMI.xml</path>
+  <offsets>
+   <x-m>-2.40</x-m>
+   <y-m> 0</y-m>
+   <z-m> 0.37</z-m>
+   <pitch-deg>-14</pitch-deg>
+  </offsets>
+ </model>
+
+ <model>
+  <path>Aircraft/DavePack/Instruments/RDMI/nav-select.xml</path>
+  <offsets>
+   <x-m>-2.40</x-m>
+   <y-m>-0.085</y-m>
+   <z-m>0.36</z-m>
+   <pitch-deg>-14</pitch-deg>
+  </offsets>
+ </model>
+
+ <model>
+  <path>Aircraft/DavePack/Instruments/n2/n2.xml</path>
+  <offsets>
+   <x-m>-2.395</x-m>
+   <y-m>0.18</y-m>
+   <z-m>0.38</z-m>
+   <pitch-deg>-14</pitch-deg>
+  </offsets>
+ </model>
+
+ <model>
+  <path>Aircraft/DavePack/Instruments/FuelFlow/ff.xml</path>
+  <offsets>
+   <x-m>-2.395</x-m>
+   <y-m>0.245</y-m>
+   <z-m>0.38</z-m>
+   <pitch-deg>-14</pitch-deg>
+  </offsets>
+ </model>
+
+ <model>
+  <path>Aircraft/AH-1S/Models/Instruments/AS/airspeed.xml</path>
+  <offsets>
+   <x-m>-2.40</x-m>
+   <y-m>-0.09</y-m>
+   <z-m>0.47</z-m>
+   <pitch-deg>-14</pitch-deg>
+  </offsets>
+ </model>
+
+ <model>
+  <path>Aircraft/DavePack/Instruments/Alt/version2/altimeter.xml</path>
+  <offsets>
+   <x-m>-2.40</x-m>
+   <y-m>0.09</y-m>
+   <z-m>0.47</z-m>
+   <pitch-deg>-14</pitch-deg>
+  </offsets>
+ </model>
+
+ <model>
+  <path>Aircraft/DavePack/Instruments/IVSI/IVSI.xml</path>
+  <offsets>
+   <x-m>-2.40</x-m>
+   <y-m> 0.08</y-m>
+   <z-m> 0.38</z-m>
+   <pitch-deg>-14</pitch-deg>
+  </offsets>
+ </model>
+
+
+<!-- ******************** animations ***********************-->
+
+
+ <animation>
+    <type>spin</type>
+    <object-name>Rotor</object-name>
+    <property>fdm/jsbsim/propulsion/engine[0]/rotor-rpm</property>
+    <factor>1.0</factor>
+    <center>
+       <x-m> 0 </x-m>
+       <y-m> 0 </y-m>
+       <z-m> 2.06 </z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y>  0 </y>
+      <z>  1 </z>
+    </axis>
+ </animation>
+
+ <animation>
+    <type>spin</type>
+    <object-name>RotorDisk</object-name>
+    <property>fdm/jsbsim/propulsion/engine[0]/rotor-rpm</property>
+    <factor>1.0</factor>
+    <center>
+       <x-m> 0 </x-m>
+       <y-m> 0 </y-m>
+       <z-m> 2.06 </z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y>  0 </y>
+      <z>  1 </z>
+    </axis>
+ </animation>
+
+ <animation>
+    <type>spin</type>
+    <object-name>TailRotor</object-name>
+    <property>fdm/jsbsim/propulsion/engine[1]/rotor-rpm</property>
+    <factor>1.0</factor>
+    <center>
+       <x-m> 8.064 </x-m>
+       <y-m> 0.33  </y-m>
+       <z-m> 1.389 </z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y>  1 </y>
+      <z>  0 </z>
+    </axis>
+ </animation>
+
+ <animation>
+    <type>spin</type>
+    <object-name>TailRotorDisk</object-name>
+    <property>fdm/jsbsim/propulsion/engine[1]/rotor-rpm</property>
+    <factor>1.0</factor>
+    <center>
+       <x-m> 8.064 </x-m>
+       <y-m> 0.33  </y-m>
+       <z-m> 1.389 </z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y>  1 </y>
+      <z>  0 </z>
+    </axis>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>Rotor</object-name>
+  <condition>
+    <less-than>
+     <property>fdm/jsbsim/propulsion/engine[0]/rotor-rpm</property>
+     <value>100</value>
+    </less-than>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>RotorDisk</object-name>
+  <condition>
+    <greater-than>
+     <property>fdm/jsbsim/propulsion/engine[0]/rotor-rpm</property>
+     <value>99.9</value>
+    </greater-than>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>TailRotor</object-name>
+  <condition>
+    <less-than>
+     <property>fdm/jsbsim/propulsion/engine[1]/rotor-rpm</property>
+     <value>100</value>
+    </less-than>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>TailRotorDisk</object-name>
+  <condition>
+    <greater-than>
+     <property>fdm/jsbsim/propulsion/engine[1]/rotor-rpm</property>
+     <value>99.9</value>
+    </greater-than>
+  </condition>
+ </animation>
+
+</PropertyList>

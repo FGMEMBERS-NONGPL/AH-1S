@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+
+<system name="rotor">
+
+  <property value="0.0">systems/rotor/clutch-cmd-norm</property>
+  <property value="0.0">systems/rotor/brake-cmd-norm</property>
+
+ 
+  <!-- Clutch ********************************************** -->
+
+  <channel name="clutch">
+
+   <kinematic name="clutch control">
+     <input>systems/rotor/clutch-cmd-norm</input>
+     <traverse>
+       <setting>
+          <position> 0 </position>
+          <time>     0 </time>
+       </setting>
+       <setting>
+          <position> 1 </position>
+          <time>     5 </time>
+       </setting>
+     </traverse>
+     <output>propulsion/engine[0]/clutch-ctrl-norm</output>
+   </kinematic>
+
+  </channel>
+
+  <!-- Brake *********************************************** -->
+
+  <channel name="brake">
+
+   <kinematic name="brake control">
+     <input>systems/rotor/brake-cmd-norm</input>
+     <traverse>
+       <setting>
+          <position> 0 </position>
+          <time>     0 </time>
+       </setting>
+       <setting>
+          <position> 1 </position>
+          <time>     5 </time>
+       </setting>
+     </traverse>
+     <output>propulsion/engine[0]/brake-ctrl-norm</output>
+   </kinematic>
+
+  </channel>
+
+
+  <!-- Collective ******************************************* -->
+
+  <channel name="collective">
+    <!-- map throttle axis to collective -->
+      <fcs_function name="map">
+        <function>  
+           <table>
+             <independentVar>fcs/throttle-cmd-norm</independentVar>
+             <tableData>
+                  0   1
+                  1   0
+             </tableData>
+           </table>
+        </function>
+        <output>systems/rotor/collective-cmd-norm</output>
+      </fcs_function>
+      <lag_filter name="fcs/collective-lag">
+        <input> systems/rotor/collective-cmd-norm </input>
+        <c1>    5.0 </c1>
+      </lag_filter>
+      <pure_gain name="fcs/collective-gain">
+        <input>  fcs/collective-lag </input>
+        <gain>   0.1680 </gain>
+        <output> fcs/x-col </output>
+      </pure_gain>
+      <summer name="fcs/collective-ctrl-rad">
+        <input> fcs/x-col </input>
+        <input> ap/collective-cmd </input>
+        <bias>  0.1900 </bias>
+        <clipto>
+          <min> 0.0 </min>
+          <max> 0.7 </max>
+        </clipto>
+        <output> propulsion/engine/collective-ctrl-rad </output>
+      </summer>
+    </channel>
+
+
+</system>

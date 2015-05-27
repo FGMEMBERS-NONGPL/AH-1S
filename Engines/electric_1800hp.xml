@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!--
+  Models a 1800 HP electric motor
+-->
+
+<electric_engine name="electric_1800hp">
+  <power unit="HP">  1800.0 </power>
+</electric_engine>

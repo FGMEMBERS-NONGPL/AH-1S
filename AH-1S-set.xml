@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <sim>
+
+    <description>Bell AH-1S Cobra</description>
+    <author>Thomas Kreiter(3D, FDM) Dave Culp(3D, FDM)</author>
+    <status>Development</status>
+    <license>CC-BY-NC-SA</license>
+
+    <flight-model>jsb</flight-model>
+    <aero>ah1s-jsbsim</aero>
+
+    <sound>
+      <path>Aircraft/AH-1S/Sounds/AH-1S-sound.xml</path>
+    </sound>
+
+    <virtual-cockpit archive="y">true</virtual-cockpit>
+  
+    <view n="0">
+     <internal archive="y">true</internal>
+     <config>
+      <pitch-offset-deg>-4.0</pitch-offset-deg>
+      <x-offset-m archive="y"> 0.0</x-offset-m><!-- right/left -->
+      <y-offset-m archive="y"> 0.7</y-offset-m><!-- up/down -->
+      <z-offset-m archive="y">-1.5</z-offset-m><!-- aft/fore -->
+     </config>
+    </view>
+
+    <chase-distance-m type="double" archive="y">-16.0</chase-distance-m>
+
+    <submodels>
+	<serviceable type="bool">1</serviceable>
+	<path>Aircraft/AH-1-jsbsim/Models/Stores/submodels.xml</path>
+    </submodels>
+
+    <virtual-cockpit archive="y">true</virtual-cockpit>
+    <allow-toggle-cockpit archive="y">true</allow-toggle-cockpit>
+
+   <input>
+     <selected>
+       <engine n="0" type="bool">true</engine>
+       <engine n="1" type="bool">false</engine>
+     </selected>
+   </input>
+
+    <model>
+      <path archive="y">Aircraft/AH-1S/Models/AH-1.xml</path> 
+      <uh1>
+         <state archive="y" type="int">2</state>   
+      </uh1>
+    </model>
+
+    <startup>
+	<splash-texture>Aircraft/AH-1S/AH-1S-splash.png</splash-texture>
+    </startup>
+  
+    <help>
+      <title>Bell AH-1 Cobra</title>
+      <line></line>
+      <key>
+        <name>e</name>
+        <desc>Fire 20mm Cannon</desc>
+      </key>
+      <key>
+        <name>j</name>
+        <desc>Toggle rotor clutch</desc>
+      </key>
+      <key>
+        <name>k</name>
+        <desc>Toggle rotor brake</desc>
+      </key>
+      <key>
+        <name>u</name>
+        <desc>Toggle autothrottle</desc>
+      </key>
+    </help>
+
+
+  </sim>
+  
+  <controls>
+    <engines>
+      <engine n="0">
+        <magnetos>0</magnetos>
+      </engine>
+    </engines>
+    <gear>
+      <brake-parking>1</brake-parking>
+    </gear>
+  </controls>
+
+  <rendering>
+    <redout>
+      <parameters>
+        <blackout-onset-g>4.0</blackout-onset-g>
+        <blackout-complete-g>8.0</blackout-complete-g>
+      </parameters> 
+    </redout>
+  </rendering>
+
+  <input>
+   <keyboard>
+
+     <key n="117">
+     <name>u</name>
+     <desc>Toggle autothrottle</desc>
+     <binding>
+      <command>property-toggle</command>
+      <property>fdm/jsbsim/fcs/rpm-governor-active-norm</property>
+      <value>1</value> 
+      <value>0</value>
+     </binding>
+     </key>
+
+     <key n="106">
+     <name>j</name>
+     <desc>Toggle rotor clutch</desc>
+     <binding>
+      <command>property-toggle</command>
+      <property>fdm/jsbsim/systems/rotor/clutch-cmd-norm</property>
+      <value>1</value> 
+      <value>0</value>
+     </binding>
+     </key>
+
+     <key n="107">
+     <name>k</name>
+     <desc>Toggle rotor brake</desc>
+     <binding>
+      <command>property-toggle</command>
+      <property>fdm/jsbsim/systems/rotor/brake-cmd-norm</property>
+      <value>1</value> 
+      <value>0</value>
+     </binding>
+     </key>
+
+    <key n="81">
+     <name>Shift-Q</name>
+     <desc>kill motor</desc>
+     <binding>
+      <command>property-assign</command>
+      <property>fdm/jsbsim/fcs/rpm-governor-active-norm</property>
+      <value>0</value>
+     </binding>
+     <binding>
+      <command>property-assign</command>
+      <property>fdm/jsbsim/fcs/throttle-pos-norm</property>
+      <value>0</value>
+     </binding>
+    </key>
+
+   </keyboard>
+  </input>
+
+ <instrumentation>
+  <marker-beacon>
+    <volume type="double" archive="y">0.0</volume>
+  </marker-beacon>
+  <rdmi-mode type="int">0</rdmi-mode> <!-- 0=TAC, 1=VOR, 2=ADF -->
+ </instrumentation>
+
+
+</PropertyList>
+
